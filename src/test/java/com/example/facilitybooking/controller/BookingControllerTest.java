@@ -38,7 +38,7 @@ class BookingControllerTest {
     private final LocalDateTime futureStart = LocalDateTime.now().plusHours(1);
     private final LocalDateTime futureEnd = futureStart.plusHours(1);
 
-    // ─── POST /api/bookings ────────────────────────────────────────────────────
+    // POST /api/bookings
 
     @Test
     void createBooking_validRequest_returns201() throws Exception {
@@ -110,7 +110,7 @@ class BookingControllerTest {
                 .andExpect(jsonPath("$.error").value("Booking Conflict"));
     }
 
-    // ─── GET /api/bookings ─────────────────────────────────────────────────────
+    // GET /api/bookings
 
     @Test
     void getBookings_validUserId_returnsListWith200() throws Exception {
@@ -142,7 +142,7 @@ class BookingControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
-    // ─── helpers ──────────────────────────────────────────────────────────────
+    // helpers
 
     private CreateBookingRequest buildRequest(String userId, String facilityId,
                                                LocalDateTime start, LocalDateTime end) {

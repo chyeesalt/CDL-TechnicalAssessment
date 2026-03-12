@@ -39,8 +39,7 @@ class BookingServiceTest {
         futureEnd = futureStart.plusHours(1);
     }
 
-    // ─── createBooking: happy path ────────────────────────────────────────────
-
+    // createBooking
     @Test
     void createBooking_validRequest_returnsBookingResponse() {
         CreateBookingRequest request = buildRequest("user1", "room-A", futureStart, futureEnd);
@@ -65,7 +64,7 @@ class BookingServiceTest {
         verify(bookingRepository).save(any(Booking.class));
     }
 
-    // ─── createBooking: validation failures ───────────────────────────────────
+    // createBooking: fail
 
     @Test
     void createBooking_endBeforeStart_throwsValidationException() {
@@ -114,7 +113,7 @@ class BookingServiceTest {
         assertThat(response.getId()).isEqualTo(2L);
     }
 
-    // ─── createBooking: conflict handling ─────────────────────────────────────
+    // createBooking: conflict
 
     @Test
     void createBooking_overlappingBookingExists_throwsConflictException() {
@@ -134,7 +133,7 @@ class BookingServiceTest {
         verify(bookingRepository, never()).save(any());
     }
 
-    // ─── getBookingsByUser ─────────────────────────────────────────────────────
+    // getBookingsByUser
 
     @Test
     void getBookingsByUser_returnsMappedList() {
@@ -162,7 +161,7 @@ class BookingServiceTest {
         assertThat(responses).isEmpty();
     }
 
-    // ─── helpers ──────────────────────────────────────────────────────────────
+    // helpers
 
     private CreateBookingRequest buildRequest(String userId, String facilityId,
                                                LocalDateTime start, LocalDateTime end) {

@@ -12,9 +12,7 @@ import java.util.List;
 
 public interface BookingRepository extends JpaRepository<Booking, Long> {
 
-    // PESSIMISTIC_WRITE = SELECT FOR UPDATE.
-    // If two requests check for conflicts at the same time, only one gets the lock.
-    // The other waits, then re-checks — and sees the first booking already saved.
+    //For conflict checking
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("SELECT b FROM Booking b WHERE b.facilityId = :facilityId AND b.startTime < :endTime AND b.endTime > :startTime")
     List<Booking> findOverlapping(@Param("facilityId") String facilityId,

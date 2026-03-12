@@ -9,15 +9,15 @@ import java.time.LocalDateTime;
 @Data
 public class CreateBookingRequest {
 
-    @NotBlank(message = "userId is required")
+    @NotBlank(message = "Enter User ID")
     private String userId;
 
-    @NotBlank(message = "facilityId is required")
+    @NotBlank(message = "Enter Facility ID")
     private String facilityId;
 
-    @NotNull(message = "startTime is required")
+    @NotNull(message = "Please indicate start time")
     private LocalDateTime startTime;
 
-    @NotNull(message = "endTime is required")
+    @NotNull(message = "Please indicate start time")
     private LocalDateTime endTime;
 }

@@ -31,7 +31,7 @@ public class BookingService {
 
         if (hasConflict) {
             throw new ResponseStatusException(HttpStatus.CONFLICT,
-                    "Facility is already booked for that time slot.");
+                    "Facility already has a booking for that time slot.");
         }
 
         Booking booking = new Booking();
@@ -53,7 +53,7 @@ public class BookingService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "endTime must be after startTime.");
         }
         if (!request.getStartTime().isAfter(LocalDateTime.now())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Booking cannot be in the past.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Booking must be a future date.");
         }
         if (Duration.between(request.getStartTime(), request.getEndTime()).toHours() > 2) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Maximum booking duration is 2 hours.");
